@@ -1,4 +1,5 @@
 @extends('templatefront')
+
 @section('main')
     <div class="container">
         @foreach ($data as $item)
@@ -12,4 +13,5 @@
             </div>
         @endforeach
     </div>
+    
 @endsection
