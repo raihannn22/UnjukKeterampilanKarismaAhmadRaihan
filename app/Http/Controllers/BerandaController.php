@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class BerandaController extends Controller
 {
