@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use App\Models\Post;
 use Illuminate\Http\Request;
+// use Illuminate\Routing\Controller;
 
 class PostController extends Controller
 {
@@ -11,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $data = Post::all();
+        return view('post/tampil', compact('data'));
     }
 
     /**
@@ -19,7 +23,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = Kategori::all();
+        return view('post/tambah', compact('kategori'));
     }
 
     /**
@@ -27,7 +32,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $request->validate([
+            'judul' => 'required',
+            'isi' => 'required',
+            'kategori_id' => 'required'
+        ]);
+
+        Post::create($validator);
+        return redirect('post')->with('success', 'Data berhasil diinput');
     }
 
     /**
@@ -43,7 +55,9 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Post::find($id);
+        $kategori = Kategori::all();
+        return view('post/edit', compact('data', 'kategori'));
     }
 
     /**
@@ -51,7 +65,16 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Post::find($id);
+
+        $validator = $request->validate([
+            'judul' => 'required',
+            'isi' => 'required',
+            'kategori_id' => 'required'
+        ]);
+
+        $data->update($validator);
+        return redirect('post')->with('success', 'Data berhasil diubah');
     }
 
     /**
@@ -59,6 +82,8 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Post::find($id);
+        $data->delete();
+        return redirect('post')->with('success', 'Data berhasil dihapus');
     }
 }
