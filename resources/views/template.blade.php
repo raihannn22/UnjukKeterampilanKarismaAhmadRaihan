@@ -22,7 +22,7 @@
 
                     <main>
                         <div class="container-fluid px-4">
-                            @yield('content')
+                            @yield('main')
                         </div>
                     </main>
 
