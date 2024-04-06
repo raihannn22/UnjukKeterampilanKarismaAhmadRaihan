@@ -15,56 +15,22 @@
 
     <body class="sb-nav-fixed">
 
-        <div class="container">
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-              <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <svg class="bi me-2" width="40" height="32"><use xlink:href="{{ route ('beranda')}}"></use></svg>
-                <span class="fs-4">Beranda</span>
-              </a>
-
-              <ul class="nav nav-pills">
-
-                @auth
-
-                @if(Auth::check() && Auth::user()->role == "admin")
-                <li class="nav-item"><a href="{{ route ('beranda')}}" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="{{ route ('kategori')}}"class="nav-link">Kategori</a></li>
-                <li class="nav-item"><a href="{{ route ('post')}}" class="nav-link">Post</a></li>
-                <li class="nav-item"><a href="{{ route ('user')}}" class="nav-link">User</a></li>
-
-                @elseif(Auth::check() && Auth::user()->role == "editor")
-                <li class="nav-item"><a href="{{ route ('beranda')}}"  class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="{{ route ('kategori')}}"  class="nav-link">Kategori</a></li>
-                <li class="nav-item"><a href="{{ route ('post')}}"  class="nav-link">Post</a></li>
-                @endif
-                @endauth
-                <li class="nav-item"><a href="login" class="nav-link">Account</a></li>
-
-              </ul>
-            </header>
-        </div>
+        @include('layouts.header')
 
         <div class="b-example-divider"></div>
 
+        <div class="container">
+            <div id="layoutSidenav">
+                    <div id="layoutSidenav_content">
+                        <main>
 
-            <div class="container">
-                <div id="layoutSidenav">
-
-
-                        <div id="layoutSidenav_content">
-
-                            <main>
-
-                                <div class="container-fluid px-4">
-                                    @yield('main')
-                                </div>
-                            </main>
-
-                            {{-- @include('layouts.partials.footer') --}}
-
-                        </div>
-                </div>
+                            <div class="container-fluid px-4">
+                                @yield('main')
+                            </div>
+                        </main>
+                    </div>
             </div>
+        </div>
 
 
 
@@ -76,7 +42,7 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="{{asset ('js/datatables-simple-demo.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
 
 </html>
