@@ -15,24 +15,56 @@
 
     <body class="sb-nav-fixed">
 
+        <div class="container">
+            @auth
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+              <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4">Beranda</span>
+              </a>
+
+              <ul class="nav nav-pills">
+
+
+
+                @if(Auth::check() && Auth::user()->role == "admin")
+                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Kategori</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Post</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">User</a></li>
+
+                @elseif(Auth::check() && Auth::user()->role == "editor")
+                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Kategori</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Post</a></li>
+                @endif
+                <li class="nav-item"><a href="login" class="nav-link">Account</a></li>
+                @endauth
+              </ul>
+            </header>
+        </div>
+          <div class="b-example-divider"></div>
 
         {{-- @include('layouts.pa  --}}
-        <div id="layoutSidenav">
-            
-            {{-- @include('layouts.partials.sidenavbar') --}}
 
-                <div id="layoutSidenav_content">
+            <div class="container">
+                <div id="layoutSidenav">
 
-                    <main>
-                        <div class="container-fluid px-4">
-                            @yield('main')
+                    {{-- @include('layouts.partials.sidenavbar') --}}
+
+                        <div id="layoutSidenav_content">
+
+                            <main>
+                                <div class="container-fluid px-4">
+                                    @yield('main')
+                                </div>
+                            </main>
+
+                            {{-- @include('layouts.partials.footer') --}}
+
                         </div>
-                    </main>
-
-                    {{-- @include('layouts.partials.footer') --}}
-
                 </div>
-        </div>
+            </div>
 
 
 

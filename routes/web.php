@@ -24,13 +24,13 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'status'])->group(function () {
-    Route::resource('kategori', KategoriController::class);
-    Route::resource('post', PostController::class);
-    Route::resource('produk', ProdukController::class);
-    Route::resource('user', UserController::class);
+    Route::resource('kategori', KategoriController::class) ->names(['index' => 'kategori',]);
+    Route::resource('post', PostController::class)->names(['index' => 'post',]);
+    Route::resource('produk', ProdukController::class)->names(['index' => 'produk',]);
+    Route::resource('user', UserController::class)->names(['index' => 'user',]);
 });
 
-Route::get('beranda', [BerandaController::class, 'index']);
+Route::get('beranda', [BerandaController::class, 'index']) ->name('beranda');
 Route::get('beranda/detail/{id}', [BerandaController::class, 'detail']);
 
 Auth::routes();
